@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- {{name}}<br>
+    <button @click="changeName()">change</button> -->
+    <compo></compo>
+  </div>
+  <!-- <div id="app2">
+    {{name}}<br>
+    <button @click="changeName()">change</button>
+    <compo></compo>
+  </div> -->
+  <hr>
+  <!-- <compo></compo> -->
+  <!-- 인스턴스 내부에 컴포넌트가 위치해야함! -->
+  <script>
+    // Vue.component('greeting', {
+    //   template: `
+    //   <div> hello </div>
+    //   `
+    // })
+    // Vue.component('compo', {
+    //   template: 
+    //     `
+    //     <div>
+    //     {{name}}<br>
+    //     <greeting></greeting>
+    //     <button @click="changeName">change</button>
+    //     </div>
+    //     `,
+    //   data() {
+    //     return {
+    //       name : "charlie_Compo"
+    //     }
+    //   },
+    //   methods: {
+    //     changeName() {
+    //       this.name = "charlie changed"
+    //     }
+    //   }
+    // })
+    const greeting = {
+      template : `
+      <div> hello </div>
+      `
+    }
+    const compo = {
+      components : {
+        'greeting' : greeting
+      },
+      template: 
+        `
+        <div>
+        {{name}}<br>
+        <greeting></greeting>
+        <button @click="changeName">change</button>
+        </div>
+        `,
+      data() {
+        return {
+          name : "charlie_Compo"
+        }
+      },
+      methods: {
+        changeName() {
+          this.name = "charlie changed"
+        }
+      }
+    }
+    const app1 = new Vue({
+      el: '#app',
+      components : {
+        'compo' : compo
+      }
+      // data : {
+      //   name: 'charlie'
+      // },
+      // methods: {
+      //   changeName() {
+      //     this.name = "charlie changed"
+      //   }
+      // }
+    })
+
+    // const app2 = new Vue({
+    //   el: '#app2',
+    //   data : {
+    //     name: 'charlie2'
+    //   },
+    //   methods: {
+    //     changeName() {
+    //       this.name = "charlie changed2"
+    //     }
+    //   }
+    // })
+  </script>
+</body>
+</html>
